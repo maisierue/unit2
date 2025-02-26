@@ -13,15 +13,17 @@ int ro6=1050;
 int hut = 900;
 int builda=0; //appt
 int buildb = 270; //house
-int sun = 100; //sun
-int sunx= 1;
+int cloud = 100; //sun
+int cloudx= 1;
 
 int bike1=400;
 int bikex = 1;
 int bike2= 500;
 
+float angle;
 void setup() {
   size(1000, 600);
+  angle = 0;
 
 }
 
@@ -29,17 +31,27 @@ void draw() { //ALL BGROUND
   background(135, 206, 250); // Sky background
   
   
-  //sun
-  fill(255, 204, 0);
-  stroke(255,204,0);
-  ellipse(sun, 100, 100, 100); 
-  sun= sun+sunx;
-  if (sun > 190) { ///reverses sun back
-   sunx = -1; }
-  if (sun < 70 ) { ///re-reverses sun forwrd
-   sunx = 1; }
+//SUN
+  fill (255,179,64);
+  stroke (255,179,64);
+  sun(500,300);
+  angle = angle +0.03; //speed of sun
+
+//END SUN------------
   
- //end sun -----------------------
+  //cloud
+  fill(255);
+  stroke(255);
+  ellipse(cloud, 100, 100, 100); 
+  ellipse(cloud-50, 120, 90, 80); //cloudpuff
+   ellipse(cloud+60, 120, 80, 65); //cloudpuff2
+  cloud= cloud+cloudx;
+  if (cloud > 190) { ///reverses sun back
+   cloudx = -1; }
+  if (cloud < 70 ) { ///re-reverses sun forwrd
+   cloudx = 1; }
+  
+ //end cloud -----------------------
  
 //BUILDINGS
  //building 1 (appt)
@@ -144,4 +156,13 @@ fill(56,62,67);
    stroke(247,238,135);
    line(400,440,500,440);
   
+}
+
+void sun(int sunx, int suny) { //rotating the sun lol
+  pushMatrix();
+  background(suny,150,suny);
+  translate (sunx,suny);
+  rotate(angle);
+  ellipse(250,0,100,100);
+  popMatrix();
 }
