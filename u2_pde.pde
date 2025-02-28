@@ -19,8 +19,11 @@ int cloudx= 1;
 int bike1=400;
 int bikex = 1;
 int bike2= 500;
+float a;
 
 float angle;
+
+
 void setup() {
   size(1000, 600);
   angle = 0;
@@ -30,6 +33,12 @@ void setup() {
 void draw() { //ALL BGROUND
   background(135, 206, 250); // Sky background
   
+  
+  //opacity rect
+  strokeWeight(0);
+  a= sin(angle)*125+125;
+  fill(35,54,85,a-5);
+  rect(0,0,1000,400);
   
 //SUN
   fill (255,179,64);
@@ -60,6 +69,16 @@ void draw() { //ALL BGROUND
  strokeWeight(2);
  stroke(142,67,52);
  rect(builda,120,170,290);
+ fill(206,133,169);
+  rect(builda+20,140,30,30);
+  rect(builda+60,140,30,30);
+  rect(builda+100,140,30,30);
+   rect(builda+20,180,30,30);
+  rect(builda+60,180,30,30);
+  rect(builda+100,180,30,30);
+  strokeWeight(4);
+   ellipse(builda+80, 390,120,150);
+
  builda = builda +2;
  if (builda > 1250) {
    builda = -300;
@@ -94,7 +113,8 @@ void draw() { //ALL BGROUND
  
  
  //ROAD
-  strokeWeight(0);
+  strokeWeight(4);
+  stroke(0);
   fill(100,100,100);
   rect(0,400,width, 100);
   
@@ -109,6 +129,7 @@ void draw() { //ALL BGROUND
 //END GRASS -----------------------
  
 //road yellow
+ strokeWeight(1);
  fill(255,204,0);
  stroke(0);
  rect(ro1,450,50,10);
@@ -148,19 +169,34 @@ void draw() { //ALL BGROUND
 stroke (0);
 strokeWeight(8);
 fill(56,62,67);
-  ellipse(400,440,60,60); //WHEELS FRONT
-    ellipse(500,440,60,60); //WHEELS BACK
+  ellipse(400+60,415,50,50); //WHEELS FRONT
+
 
    //bikebody
-   strokeWeight(8);
+   strokeWeight(30);
    stroke(247,238,135);
-   line(400,440,500,440);
+   line(400+70,420,460+70,470);
   
+   stroke (0);
+strokeWeight(8);
+fill(56,62,67);
+    ellipse(440+80,460,60,60); //WHEELS BACK
+
+//END OF BIKE-------------------------
+
+//human
+strokeWeight(4);
+fill(255);
+line (470,420,490,370);
+line (496,435,490,370);
+line (490,370,490,300);
+ellipse(490,280,50,50);
+ellipse(480,280,10,10);
+ellipse(500,280,10,10);
 }
 
 void sun(int sunx, int suny) { //rotating the sun lol
   pushMatrix();
-  background(suny,150,suny);
   translate (sunx,suny);
   rotate(angle);
   ellipse(250,0,100,100);
